@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
-import ImageDefault from "../../assets/favicon.png";
+
 import {
     Card,
     CardTitles,
     StyledImage,
+    StyledImageBorder,
     StyledTouchableOpacity,
     StyledView,
     TextStyled,
@@ -11,27 +12,38 @@ import {
 } from "./styles"
 import { useNavigation } from "@react-navigation/native";
 import { routesType } from "../../Routes/routes";
+import { FontAwesome } from '@expo/vector-icons';
+import React from "react";
 
 
 type GroupType = {
-    image?: string;
-    name: string;
+    data: [  
+        Foto: string,
+        Nome: string,
+        QtdUsuario: string,
+        Valor: string,
+        DataRevelacao: string,
+        Descricao:  string,
+        Id_Status: number,
+        id: number
+    ];
+    
 }
-
 export function GroupCard(data: GroupType) {
     const navigation = useNavigation<routesType>();
-
+    console.log(data,"data CARAI");
     return (
         <StyledView>
             <Card>
-                <StyledImage source={{ uri: data.image == null || undefined || "" ? ImageDefault : data.image }} />
+                <StyledImageBorder>
+                <StyledImage source={require('../../assets/socorro.png') } />
+                </StyledImageBorder>
                 <CardTitles>
-                    <TextTitles>{data.name}</TextTitles>
+                    {data.data.Nome}
                 </CardTitles>
-                <StyledTouchableOpacity
-                    onPress={() => { navigation.navigate("RegistrationGroup") }}
-                >
-                    <TextStyled>Ver</TextStyled>
+                <StyledTouchableOpacity >
+
+                <FontAwesome name="pencil-square" size={34} color="#f5f5dc" style={{alignItems: 'center', justifyContent: 'center'}} onPress={() => { navigation.navigate("RegistrationGroup") }}/>
                 </StyledTouchableOpacity>
             </Card>
         </StyledView>

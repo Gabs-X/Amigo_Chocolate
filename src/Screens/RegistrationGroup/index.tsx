@@ -7,6 +7,7 @@ import { routesType } from "../../Routes/routes";
 import * as ImagePicker from 'expo-image-picker';
 import {
     StyledImage,
+    StyledImageBorder,
     StyledTextTitle,
     StyledTouchableOpacity,
     StyledView,
@@ -14,6 +15,7 @@ import {
     TextInputStyle
 } from "./styles";
 import axios from 'axios';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type GroupRegistrationType = {
     image?: string;
@@ -59,7 +61,7 @@ export function RegistrationGroup() {
             console.log("Data :", data);
 
             const resposta = await axios.post(
-                'https://localhost:7278/api/Grupo/adicionar', {
+                'http://localhost:3000/Group', {
                     Foto: data.image,
                     Nome: data.name,
                     QtdUsuario: data.qtdUsers,
@@ -69,7 +71,7 @@ export function RegistrationGroup() {
                     Id_Status: 1                        
             });
 
-            if (resposta.status === 200) {
+            if (resposta.status === 201) {
                 navigation.navigate("Home");
             }
         } catch (err) {
@@ -81,16 +83,17 @@ export function RegistrationGroup() {
         <StyledView>
             <StyledTextTitle>Cadastrar Novo Grupo</StyledTextTitle>
 
-            <Controller
-                control={control}
-                name="image"
-                render={() => (
-                    <StyledViewImage>
-                        {newImage && <StyledImage source={{ uri: newImage }} />}
-                        <Button title="Selecione uma imagem da galeria" onPress={pickImage} />
-                    </StyledViewImage>
-                )}
-            />
+            <StyledImageBorder onPress={pickImage}>
+                <Controller
+                    control={control}
+                    name="image"
+                    render={({ field }) => (
+                        <StyledViewImage>
+                            {newImage ? <StyledImage source={{ uri: newImage }} /> : <MaterialCommunityIcons name="image-plus" size={40} color="black" onPress={pickImage}/>}          
+                        </StyledViewImage>
+                    )}
+                />
+            </StyledImageBorder>
 
             <Controller
                 control={control}
@@ -176,7 +179,7 @@ export function RegistrationGroup() {
             />
 
             <StyledTouchableOpacity onPress={handleSubmit(HandleOnClick)}>
-                <Text>Cadastrar Grupo</Text>
+                Cadastrar Grupo
             </StyledTouchableOpacity>
         </StyledView>
     )

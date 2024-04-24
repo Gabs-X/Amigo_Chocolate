@@ -32,7 +32,9 @@ export const StyledTouchableOpacity = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    background-color: ${({ theme }) => theme.colors.INFO};
+    background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
+    border: 2px solid ${({ theme }) => theme.colors.INFO};
+    border-radius: 10px;
 `
 
 export const StyledTouchableOpacityLogo = styled.TouchableOpacity`
@@ -40,8 +42,9 @@ export const StyledTouchableOpacityLogo = styled.TouchableOpacity`
     width: 240px;
     align-items: left;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
+
 `
 
 export const StyledViewLogo = styled.View`
@@ -52,9 +55,13 @@ export const StyledViewLogo = styled.View`
     gap: 12px;
 `
 export const StyledTextTitle = styled.Text`
-    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 50px;
+    margin-top:-80px;
     color: ${({ theme }) => theme.colors.TEXT_PRIMARY};
 `
 

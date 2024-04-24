@@ -1,26 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
 import { routesType } from "../../Routes/routes";
-import { StyledText, StyledTouchableOpacity, StyledView } from "./styles";
+import { StyledText, StyledTextTitle, StyledTouchableOpacity, StyledView } from "./styles";
 import { GroupCard } from "../../Components/GroupCard";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollView } from "react-native";
 
 export function Home() {
-    const [gruposUsuario, setGruposUsuario] = useState();
+    const [gruposUsuario, setGruposUsuario] = useState<any[]>([]);
     const navigation = useNavigation<routesType>();
 
     useEffect(() => {
-        try {
-            getGruposUsuario()
-        } catch (error) {
-            console.log("Erro ao enviar os dados: ", error);
-        }
+        getGruposUsuario()
     }, [])
 
     async function getGruposUsuario() {
         try {
-            const apiUrl = `https://localhost:7278/api/GrupoUsuario/buscarporid/{1}`;
+            const apiUrl = `http://localhost:3000/Group`;
             const resposta = await axios.get(apiUrl);
 
             setGruposUsuario(resposta.data)
@@ -32,17 +29,23 @@ export function Home() {
 
     return (
         <StyledView>
+           
+           <StyledTextTitle>     
+            <FontAwesome6 name="people-group" size={80} color="#964b00" />      
+                Grupos
+            </StyledTextTitle>
+            
+                {gruposUsuario.map((grupo) => (
+                    <GroupCard key={grupo.id} data={grupo} />
+                ))}
+            
+            
+
             <StyledTouchableOpacity
                 onPress={() => { navigation.navigate("RegistrationGroup") }}
             >
                 <StyledText>Cadastrar Grupo</StyledText>
             </StyledTouchableOpacity>
-
-            {/* <ScrollView> */}
-            <GroupCard image="" name="Grupo 1" />
-            <GroupCard image="" name="Grupo 2" />
-            <GroupCard image="" name="Grupo 3" />
-            {/* </ScrollView> */}
         </StyledView>
     )
 }

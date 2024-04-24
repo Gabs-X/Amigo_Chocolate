@@ -16,19 +16,19 @@ export const Card = styled.View`
   align-items: center;
   gap: 10px;
 
-  width: 360px;
-  height: 140px;
-  padding: 32px 24px;
-  
-  background-color: ${({ theme }) => theme.colors.ICON};
-  border-radius: 12px;
+  width: 300px;
+  height: 100px;
 
-  color: ${({ theme }) => theme.colors.TEXT_PRIMARY};
-  text-decoration: none;
+  
+  background-color: ${({ theme }) => theme.colors.INFO};
+  border-radius: 12px;
 `
 
 export const CardTitles = styled.View`
-  color: ${({ theme }) => theme.colors.TEXT_PRIMARY};
+  color: ${({ theme }) => theme.colors.TEXT_TITLE};
+  font-size:15px;
+  height: 40px;
+  width: 120px;
   text-align: center;
 `
 
@@ -53,17 +53,30 @@ export const TextSubtitle = styled.Text`
 `
 
 export const StyledImage = styled.Image`
-  color: ${({ theme }) => theme.colors.TEXT_SECUNDARY};
   border-radius: 50px;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 `
 
-export const StyledTouchableOpacity = styled.TouchableOpacity`
-    height: 50px;
-    width: 100px;
+export const StyledImageBorder = styled.TouchableOpacity`
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.BACKGROUND_PRIMARY};
-    padding: 32px 24px;
+    border-radius: 50px;
+    width: 75px;
+    height: 75px;
+    background-color: gray !important;
+`
+
+export const StyledTouchableOpacity = styled.View`
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50px;
+
 `

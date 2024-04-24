@@ -30,7 +30,7 @@ export const StyledTouchableOpacity = styled.TouchableOpacity`
 export const StyledTextTitle = styled.Text`
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     color: ${({ theme }) => theme.colors.TEXT_PRIMARY};
 `
 
@@ -44,6 +44,23 @@ export const StyledViewImage = styled.View`
     align-items: center;
     justify-content: center;
     gap: 30px;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: gray !important;
+`
+
+export const StyledImageBorder = styled.TouchableOpacity`
+    margin-bottom:30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: gray !important;
 `
 
 export const StyledImage = styled.Image`

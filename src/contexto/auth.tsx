@@ -3,6 +3,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import { ToastAndroid } from 'react-native';
 
 interface AuthContextType {
     authenticated: boolean;
@@ -26,30 +27,32 @@ export const AuthProvider = ({ children }: any) => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        const recoveredUser = localStorage.getItem("amigochocolate:user");
+        // const recoveredUser = localStorage.getItem("amigochocolate:user");
 
-        if (recoveredUser) {
-            setUser(JSON.parse(recoveredUser));
-        }
+        // if (recoveredUser) {
+        //     setUser(JSON.parse(recoveredUser));
+        // }
 
-        setLoading(false);
+        // setLoading(false);
     }, []);
 
     const login = async (email: string, password: string) => {
-        try {
-            const resposta = await axios.post(
-                'https://localhost:7278/api/Login/autenticar', {
-                Email: email,
-                Senha: password
-            });
+       try {
+        
+            const resposta = await axios.get(
+                `http://localhost:3000/User?Email=${email}.com&Password=${password}`);
 
-            if (resposta.status === 200) {
+            if (resposta.data.length != 0) {
                 setUser(resposta.data);
 
                 console.log("User", resposta.data)
 
                 localStorage.setItem("amigochocolate:user", JSON.stringify(resposta.data));
                 navigation.navigate('Home');
+            }
+            else{
+               
+                
             }
         } catch (err) {
             console.log("Erro ao enviar os dados: ", err);

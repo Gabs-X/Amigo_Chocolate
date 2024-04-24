@@ -1,4 +1,4 @@
-import { View, Text, Button, Image } from "react-native";
+import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
@@ -6,6 +6,7 @@ import { routesType } from "../../Routes/routes";
 import * as ImagePicker from 'expo-image-picker';
 import {
     StyledImage,
+    StyledImageBorder,
     StyledTextTitle,
     StyledTouchableOpacity,
     StyledView,
@@ -13,7 +14,8 @@ import {
     TextInputStyle
 } from "./styles";
 import axios from "axios";
-
+import React from "react";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type UserSignUpType = {
     image: string;
@@ -22,6 +24,7 @@ type UserSignUpType = {
     password: string;
     confirmPassword: string;
 }
+
 
 
 export function SignUp() {
@@ -52,15 +55,14 @@ export function SignUp() {
         else {
             try {
                 const resposta = await axios.post(
-                    'https://localhost:7278/api/Usuario/adicionar', {
-                    Foto: data.image,
-                    Nome: data.name,
+                    'http://localhost:3000/User', {
+                Image: data.image,
+                    Name: data.name,
                     Email: data.email,
-                    Senha: data.password,
-                    Id_Status: 1
+                    Password: data.password,
                 });
-
-                if (resposta.status === 200) {
+ 
+                if (resposta.status === 201) {
                     navigation.navigate("Login");
                 }
             } catch (err) {
@@ -87,17 +89,17 @@ export function SignUp() {
     return (
         <StyledView>
             <StyledTextTitle>Novo Cadastro</StyledTextTitle>
-
-            <Controller
-                control={control}
-                name="image"
-                render={({ field }) => (
-                    <StyledViewImage>
-                        {newImage && <StyledImage source={{ uri: newImage }} />}
-                        <Button title="Selecione uma imagem da galeria" onPress={pickImage} />
-                    </StyledViewImage>
-                )}
-            />
+            <StyledImageBorder onPress={pickImage}>
+                <Controller
+                    control={control}
+                    name="image"
+                    render={({ field }) => (
+                        <StyledViewImage>
+                            {newImage ? <StyledImage source={{ uri: newImage }} /> : <MaterialCommunityIcons name="image-plus" size={40} color="black" onPress={pickImage}/>}          
+                        </StyledViewImage>
+                    )}
+                />
+            </StyledImageBorder>
 
             <Controller
                 control={control}

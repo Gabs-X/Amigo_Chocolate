@@ -8,6 +8,7 @@ import { SignUp } from '../Screens/SignUp'
 import { Footer } from "../Components/Footer";
 import { useAuth, AuthProvider } from '../contexto/auth'; // Importar o contexto de autenticação
 import { RegistrationGroup } from '../Screens/RegistrationGroup';
+import { Header } from '../Components/Header/Header';
 
 const routes = createNativeStackNavigator();
 const tab = createBottomTabNavigator();
@@ -41,7 +42,7 @@ export type routesType = NativeStackNavigationProp<RoutesNavigationType>
 
 function GuestRoutes() {
     return (
-        <routes.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+        <routes.Navigator initialRouteName='Login' screenOptions={{ header: () => <Header /> }}>
             <routes.Screen name="Login" component={Login} />
             <routes.Screen name="RecoverPassword" component={RecoverPassword} />
             <routes.Screen name="SignUp" component={SignUp} />
