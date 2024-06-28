@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: any) => {
        try {
         
             const resposta = await axios.get(
-                `http://localhost:3000/User?Email=${email}.com&Password=${password}`);
+                `http://localhost:3000/User?Email=${email}&Password=${password}`);
 
             if (resposta.data.length != 0) {
                 setUser(resposta.data);

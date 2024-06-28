@@ -27,6 +27,24 @@ export const StyledTouchableOpacity = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.colors.INFO};
 `
 
+export const StyledViewPassword = styled.View`
+    flex-direction: row;
+      align-items: center;
+`
+
+export const StyledInputPassword = styled.TextInput `
+    height: 40px;
+    width: 267px;
+    text-align:  center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
+    color: ${({ theme }) => theme.colors.TEXT_SECUNDARY};
+`
+
+export const StyledTouchablePassword = styled.TouchableOpacity`
+    padding-left: 10;
+`
+
 export const StyledTextTitle = styled.Text`
     font-size: 30px;
     font-weight: bold;

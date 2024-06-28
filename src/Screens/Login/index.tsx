@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
 import { routesType } from "../../Routes/routes";
@@ -11,10 +11,15 @@ import {
     StyledText,
     StyledTouchableOpacityLogo,
     StyledViewLogo,
-    StyledTextTitle
+    StyledTextTitle,
+    StyledViewPassword,
+    StyledInputPassword,
+    StyledTouchablePassword
 } from "./styles";
-import React from "react";
+import React, { useState } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+
 
 type UserLoginType = {
     email: string;
@@ -25,6 +30,7 @@ type UserLoginType = {
 export function Login() {
     const { login } = useAuth();
     const navigation = useNavigation<routesType>();
+    const [showPassword, setShowPassword] = useState(true);
 
     const { control, handleSubmit } = useForm<UserLoginType>({
         defaultValues: {
@@ -33,6 +39,10 @@ export function Login() {
         }
     });
 
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+        };
+  
     async function HandleOnClick(data: UserLoginType) {
         try {
             await login(data.email, data.password)
@@ -62,9 +72,10 @@ export function Login() {
                             onBlur={field.onBlur} />
                         {error && <Text style={{ color: 'red' }}>{error.message}</Text>}
                     </View>
-                )} />
+                )} 
+            />
 
-            <Controller
+            {/* <Controller
                 control={control}
                 name="password"
                 rules={{ required: "É necessário preencher a senha" }}
@@ -77,7 +88,37 @@ export function Login() {
                             onBlur={field.onBlur} />
                         {error && <Text style={{ color: 'red' }}>{error.message}</Text>}
                     </View>
-                )} />
+                )} /> */}
+
+
+
+            <Controller
+                control={control}
+                name="password"
+                rules={{ required: "É necessário preencher a senha"}}
+                render={({ field: {value, onChange,onBlur}, fieldState: { error } }) => (
+                    <StyledViewPassword>
+                        <StyledInputPassword
+                            secureTextEntry={showPassword}
+                            placeholder="Senha"
+                            value={value}
+                            onChangeText={onChange}
+                            onBlur={onBlur}
+                        />
+                        <StyledTouchablePassword onPress={toggleShowPassword}> 
+                            <Ionicons
+                                name={showPassword ? "eye-off" : "eye"}
+                                size={24}
+                                color="black"
+                            />
+                        </StyledTouchablePassword>
+                        {error && <Text style={{ color: 'red' }}>{error.message}</Text>}
+                    </StyledViewPassword>
+                )}
+            />
+
+
+
 
 
             <StyledText onPress={() => navigation.navigate("RecoverPassword")}>
@@ -89,7 +130,7 @@ export function Login() {
             </StyledTouchableOpacity>
 
             <StyledText onPress={() => navigation.navigate("SignUp")}>
-                Não possui acesso? Se cadastre aqui
+                Ou cadastre-se aqui
             </StyledText>
         </StyledView>
     )

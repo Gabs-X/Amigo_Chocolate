@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f9e4b7"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -18,10 +18,25 @@
       "supportsTablet": true
     },
     "android": {
+      
+        "expo": {
+          "name": "YourAppName",
+          "slug": "your-app-slug",
+          "version": "1.0.0",
+          "android": {
+            "permissions": [
+              "DETECT_SCREEN_CAPTURE"
+            ]
+          }
+        },
+      
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#f9e4b7"
       }
+      
+      
+
     },
     "web": {
       "favicon": "./assets/favicon.png"

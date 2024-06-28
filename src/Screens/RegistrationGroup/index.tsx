@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import axios from 'axios';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import  { Masks } from 'react-native-mask-input';
 
 type GroupRegistrationType = {
     image?: string;
@@ -71,7 +72,8 @@ export function RegistrationGroup() {
                     Id_Status: 1                        
             });
 
-            if (resposta.status === 201) {
+            
+            if (resposta.status  === 201) {
                 navigation.navigate("Home");
             }
         } catch (err) {
@@ -140,6 +142,7 @@ export function RegistrationGroup() {
                             value={field.value}
                             onChangeText={field.onChange}
                             onBlur={field.onBlur}
+                            mask={Masks.BRL_CURRENCY}
                         />
                         {error && <Text style={{ color: 'red' }}>{error.message}</Text>}
                     </View>
@@ -157,6 +160,7 @@ export function RegistrationGroup() {
                             value={field.value}
                             onChangeText={field.onChange}
                             onBlur={field.onBlur}
+                            mask={Masks.DATE_DDMMYYYY}
                         />
                         {error && <Text style={{ color: 'red' }}>{error.message}</Text>}
                     </View>

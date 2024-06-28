@@ -5,6 +5,8 @@ export const StyledTextTitle = styled.Text`
     font-weight: bold;
     margin-bottom: 50px;
     position: absolute;
+    display: flex;
+    align-items: space-between;
     top: 10px;
     left: 10px;
     right: 10px;
@@ -17,7 +19,7 @@ export const StyledText = styled.Text`
 `
 
 export const StyledBodyHeader = styled.Text`
-    width: 101%;
+    width: 100%;
     height: 50px;
     background-color: ${({ theme }) => theme.colors.INFO };
     align-content: center;

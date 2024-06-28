@@ -29,11 +29,11 @@ type GroupType = {
     ];
     
 }
-export function GroupCard(data: GroupType) {
+export function PartCard(data: GroupType) {
     const navigation = useNavigation<routesType>();
     return (
         <StyledView>
-            <Card onPress={() => navigation.navigate('GroupHome', { groupData: data.data })}>
+            <Card >
                 <StyledImageBorder >
                 <StyledImage source={data.data.Foto ? {uri: data.data.Foto} : require('../../assets/socorro.png')  } />
                 </StyledImageBorder>

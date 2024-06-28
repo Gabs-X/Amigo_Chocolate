@@ -1,4 +1,5 @@
 import { styled } from 'styled-components/native'
+import MaskInput, { Masks } from 'react-native-mask-input';
 
 export const StyledView = styled.View`
     display: flex;
@@ -9,7 +10,7 @@ export const StyledView = styled.View`
     background-color: ${({ theme }) => theme.colors.BACKGROUND_PRIMARY};
 `
 
-export const TextInputStyle = styled.TextInput`
+export const TextInputStyle = styled(MaskInput)`
     height: 40px;
     width: 300px;
     text-align: center;

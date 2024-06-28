@@ -8,7 +8,9 @@ import { SignUp } from '../Screens/SignUp'
 import { Footer } from "../Components/Footer";
 import { useAuth, AuthProvider } from '../contexto/auth'; // Importar o contexto de autenticação
 import { RegistrationGroup } from '../Screens/RegistrationGroup';
-import { Header } from '../Components/Header/Header';
+import { Header } from '../Components/Header';
+import { GroupHome } from '../Screens/GroupHome';
+import { GroupInfo } from '../Screens/GroupInfo';
 
 const routes = createNativeStackNavigator();
 const tab = createBottomTabNavigator();
@@ -19,26 +21,11 @@ export type RoutesNavigationType = {
     RecoverPassword: undefined;
     SignUp: undefined;
     RegistrationGroup: undefined;
+    GroupInfo: undefined;
 }
 
 export type routesType = NativeStackNavigationProp<RoutesNavigationType>
 
-// function TabNavigator() {
-//     return (
-//         <tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }} tabBar={Footer}>
-//             <tab.Screen name="Home" component={Home} />
-//             <tab.Screen name="RegistrationGroup" component={RegistrationGroup} />
-//         </tab.Navigator>
-//     )
-// }
-
-// function AuthenticatedRoutes() {
-//     return (
-//         <routes.Navigator screenOptions={{ headerShown: false }}>
-//             {/* <routes.Screen name="Tabs" component={TabNavigator} /> */}
-//         </routes.Navigator>
-//     )
-// }
 
 function GuestRoutes() {
     return (
@@ -48,6 +35,8 @@ function GuestRoutes() {
             <routes.Screen name="SignUp" component={SignUp} />
             <routes.Screen name="Home" component={Home} />
             <routes.Screen name="RegistrationGroup" component={RegistrationGroup} />
+            <routes.Screen name="GroupHome" component={GroupHome} />
+            <routes.Screen name="GroupInfo" component={GroupInfo} />
         </routes.Navigator>
     )
 }

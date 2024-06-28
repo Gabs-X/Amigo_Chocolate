@@ -17,9 +17,30 @@ export const StyledViewButton = styled.View`
     gap: 10px;
 `
 
+export const StyledViewPassword = styled.View`
+    flex-direction: row;
+      align-items: center;
+      margin-Bottom: 10;
+`
+
+export const StyledInputPassword = styled.TextInput `
+    height: 40px;
+    width: 254px;
+    text-align:  center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
+    color: ${({ theme }) => theme.colors.TEXT_SECUNDARY};
+`
+
+export const StyledTouchablePassword = styled.TouchableOpacity`
+    padding-top: 10;
+    padding-bottom: 10;
+    padding-left: 10;
+`
+
 export const TextInputStyle = styled.TextInput`
     height: 40px;
-    width: 300px;
+    width: 285px;
     text-align: center;
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
@@ -44,7 +65,6 @@ export const StyledTouchableOpacityLogo = styled.TouchableOpacity`
     justify-content: center;
     margin-top: 10px;
     background-color: ${({ theme }) => theme.colors.BACKGROUND_SECUNDARY};
-
 `
 
 export const StyledViewLogo = styled.View`
@@ -58,7 +78,7 @@ export const StyledTextTitle = styled.Text`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: bold;
     margin-bottom: 50px;
     margin-top:-80px;
